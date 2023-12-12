@@ -1,6 +1,8 @@
 package http
 
 import (
+	"time"
+
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
 	"github.com/gofiber/fiber/v2/middleware/csrf"
@@ -22,7 +24,7 @@ func DefaultRuntimeOptions() RuntimeOption {
 	return RuntimeOption{
 		Middleware: []fiber.Handler{
 			cors.New(),
-			limiter.New(),
+			limiter.New(limiter.Config{Max: 100, Expiration: time.Second}),
 			csrf.New(),
 		},
 	}
