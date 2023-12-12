@@ -1,0 +1,13 @@
+.idea
+vendor
+config.json
+api/swagger/*
+api/swagger/docs.go
+!api/swagger/.gitkeep
+api/proto/*
+!api/proto/.gitkeep
+!api/proto/*.proto
+!api/proto/README.md
+.vscode
+__debug_bin
+mall-order-svc
