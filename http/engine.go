@@ -25,6 +25,8 @@ func NewEngine(opts ...RuntimeOption) *Engine {
 		AppName:     ops.AppName,
 		JSONEncoder: sonic.Marshal,
 		JSONDecoder: sonic.Unmarshal,
+		Views:       ops.Views,
+		ViewsLayout: ops.ViewsLayout,
 	})
 	for _, v := range ops.Middleware {
 		app.Use(v)

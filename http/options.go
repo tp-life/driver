@@ -13,10 +13,12 @@ type Option struct {
 }
 
 type RuntimeOption struct {
-	Pprof      bool
-	IsRelease  bool
-	AppName    string
-	Middleware []fiber.Handler
+	Pprof       bool
+	IsRelease   bool
+	AppName     string
+	Middleware  []fiber.Handler
+	ViewsLayout string
+	Views       fiber.Views
 }
 
 func DefaultRuntimeOptions() RuntimeOption {
