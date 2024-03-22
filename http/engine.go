@@ -13,7 +13,7 @@ import (
 )
 
 type Engine struct {
-	app *fiber.App
+	*fiber.App
 }
 
 func NewEngine(opts ...RuntimeOption) *Engine {
@@ -42,11 +42,11 @@ func NewEngine(opts ...RuntimeOption) *Engine {
 		}))
 	}
 
-	return &Engine{app: app}
+	return &Engine{App: app}
 }
 
 func (e *Engine) Serve(opt Option) {
-	err := e.app.Listen(":" + strconv.Itoa(int(opt.Port)))
+	err := e.App.Listen(":" + strconv.Itoa(int(opt.Port)))
 	if err != nil {
 		panic(fmt.Sprintf("%d: http server start error: %+v", opt.Port, err))
 	}
@@ -54,39 +54,39 @@ func (e *Engine) Serve(opt Option) {
 }
 
 func (e *Engine) Quit() {
-	e.app.Shutdown()
+	e.App.Shutdown()
 }
 
 func (e *Engine) Use(args ...interface{}) {
-	e.app.Use(args...)
+	e.App.Use(args...)
 }
 
 func (e *Engine) UseMiddleware(args ...interface{}) fiber.Router {
-	return e.app.Use(args...)
+	return e.App.Use(args...)
 }
 
 func (e *Engine) Get(path string, handlers ...func(*fiber.Ctx) error) fiber.Router {
-	return e.app.Get(path, handlers...)
+	return e.App.Get(path, handlers...)
 }
 func (e *Engine) Patch(path string, handlers ...func(*fiber.Ctx) error) fiber.Router {
-	return e.app.Patch(path, handlers...)
+	return e.App.Patch(path, handlers...)
 }
 func (e *Engine) Post(path string, handlers ...func(*fiber.Ctx) error) fiber.Router {
-	return e.app.Post(path, handlers...)
+	return e.App.Post(path, handlers...)
 }
 func (e *Engine) Put(path string, handlers ...func(*fiber.Ctx) error) fiber.Router {
-	return e.app.Put(path, handlers...)
+	return e.App.Put(path, handlers...)
 }
 func (e *Engine) Delete(path string, handlers ...func(*fiber.Ctx) error) fiber.Router {
-	return e.app.Delete(path, handlers...)
+	return e.App.Delete(path, handlers...)
 }
 func (e *Engine) Head(path string, handlers ...func(*fiber.Ctx) error) fiber.Router {
-	return e.app.Head(path, handlers...)
+	return e.App.Head(path, handlers...)
 }
 func (e *Engine) Options(path string, handlers ...func(*fiber.Ctx) error) fiber.Router {
-	return e.app.Options(path, handlers...)
+	return e.App.Options(path, handlers...)
 }
 
 func (e *Engine) Group(prefix string, handlers ...func(*fiber.Ctx) error) fiber.Router {
-	return e.app.Group(prefix, handlers...)
+	return e.App.Group(prefix, handlers...)
 }
